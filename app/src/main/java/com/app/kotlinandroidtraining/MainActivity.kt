@@ -20,32 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonLoadImage.setOnClickListener {
-
-            val url = "https://dev.java/assets/images/java-logo-vert-blk.png"
-
-            Glide.with(this)
-                .load(url)
-//                .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC )
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.drawable.broken_img)
-//                .override(200, 200) // you can change image size
-//                .skipMemoryCache(true) // if it's true it doesn't cache on phone disk
-                .into(binding.imgMain)
-
-//            Picasso.get()
-//                .load(url)
-//                .error(R.drawable.broken_img)
-//                .into(binding.imgMain, object: Callback{
-//                    override fun onSuccess() {
-//                        Toast.makeText(this@MainActivity, "HEY!!", Toast.LENGTH_SHORT).show()
-//                    }
-//
-//                    override fun onError(e: Exception?) {
-//                        Toast.makeText(this@MainActivity, "DENIED!!", Toast.LENGTH_SHORT).show()
-//                    }
-//
-//                })
+        binding.button.setOnClickListener {
+            val internet : Boolean = NetworkChecker(this).isInternetConnected
+            Toast.makeText(this, internet.toString(), Toast.LENGTH_SHORT).show()
         }
+
     }
 }
